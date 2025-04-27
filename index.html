@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | Tip calculator app</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="./script.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
             </label>
             <div class="bill-input input">
               <span><img src="./images/icon-dollar.svg" alt="dollar" role="none"></span>
-              <input type="number" id="bill" name="bill" placeholder="0">
+              <input type="text" inputmode="numeric" id="bill" name="bill" placeholder="0" autocomplete="off">
             </div>
           </div>
 
@@ -52,7 +53,7 @@
                 <input type="radio" name="tip" id="tip-50">
               </label>
               <label class="tip" id="custom-tip">
-                <input type="text" name="custom-tip" placeholder="Custom">
+                <input type="text" inputmode="numeric" name="custom-tip" placeholder="Custom" autocomplete="off">
               </label>
 
             </div>
@@ -61,11 +62,11 @@
           <div class="input-field">
             <label for="npeople">
               <span class="label">Number of People</span>
-              <span class="error-message" role="alert" hidden>Can't be zero</span>
+              <span class="error-message" role="alert" >Can't be zero</span>
             </label>
             <div class="npeople input">
               <span><img src="./images/icon-person.svg" alt="persons" role="none"></span>
-              <input type="number" id="persons" name="persons" placeholder="0">
+              <input type="text" inputmode="numeric" id="persons" name="persons" placeholder="0" autocomplete="off">
             </div>
           </div>
 
@@ -73,32 +74,34 @@
       </section>
 
       <section class="tip-results">
-        <div class="output" id="tip-amount">
-          <div class="left">
-            <h4>Tip Amount</h4>
-            <small>/ person</small>
+
+        <div>
+          <div class="output" id="tip-amount">
+            <div class="left">
+              <h4>Tip Amount</h4>
+              <small>/ person</small>
+            </div>
+
+            <div class="right">
+              <strong>$0.00</strong>
+            </div>
+
           </div>
 
-          <div class="right">
-            <strong>$0.00</strong>
-          </div>
+          <div class="output" id="total">
+            <div class="left">
+              <h4>Total</h4>
+              <small>/ person</small>
+            </div>
 
+            <div class="right">
+              <strong>$0.00</strong>
+            </div>
+          </div>
         </div>
 
-        <div class="output" id="total">
-          <div class="left">
-            <h4>Total</h4>
-            <small>/ person</small>
-          </div>
-
-          <div class="right">
-            <strong>$0.00</strong>
-          </div>
-        </div>
-
-
-        <div class="reset-button">
-          <button>RESET</button>
+        <div class="reset-button disable">
+          <button disabled="true">RESET</button>
         </div>
       </section>
     </div>

@@ -16,7 +16,8 @@
     font-weight: 700;
 }
 
-:root{
+:root {
+    --green-200: #9FE8DF;
     --green-400: hsl(172, 67%, 45%);
     --green-900: hsl(183, 100%, 15%);
     --grey-500: hsl(186, 14%, 43%);
@@ -24,16 +25,18 @@
     --grey-200: hsl(185, 41%, 84%);
     --grey-50: hsl(189, 47%, 97%);
     --white: hsl(0, 100%, 100%);
+    --error:hsl(15, 40%, 51%);
 }
 
-html, body{
+html,
+body {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
     background-color: var(--grey-200);
 }
 
-main{
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,9 +44,10 @@ main{
     padding-top: 50px;
     font-family: space-mono;
     font-weight: 400;
+    min-height: calc(100vh - 20px);
 }
 
-h1{
+h1 {
     color: var(--green-900);
     font-weight: 600;
     font-size: 28px;
@@ -51,7 +55,9 @@ h1{
     margin-bottom: 50px;
 }
 
-.tip-calculator-container{
+
+/************************* Styling the Fields ****************/
+.tip-calculator-container {
     background-color: var(--white);
     width: 100%;
     border-radius: 20px 20px 0px 0px;
@@ -61,19 +67,24 @@ h1{
     gap: 24px;
 }
 
-.input-field label{
+
+/**
+ * Input Field Styling 
+*/
+.input-field label {
     width: 100%;
-    display: flex;   
+    display: flex;
     justify-content: space-between;
     margin-bottom: 4px;
 }
 
-.input-field label span , fieldset legend{
+.input-field label span,
+fieldset legend {
     font-weight: 700;
-    color:var(--grey-400);
+    color: var(--grey-400);
 }
 
-.input-field .input{
+.input-field .input {
     background-color: var(--grey-50);
     height: 45px;
     border-radius: 4px;
@@ -83,7 +94,7 @@ h1{
     padding: 0px 16px;
 }
 
-.input-field .input input{
+.input-field .input input {
     height: 100%;
     width: 100%;
     border: none;
@@ -94,26 +105,37 @@ h1{
     color: var(--green-900);
     font-weight: bolder;
     font-family: space-mono;
+    caret-color: var(--green-400);
 }
 
+input::placeholder{
+    color: var(--grey-400);
+}
 
-fieldset{
+.error-message{
+    display: none;
+}
+
+/**
+ * Field Set Sytles
+*/
+fieldset {
     border: none;
     margin: 24px 0px;
 }
 
-fieldset .tip-perts{
+fieldset .tip-perts {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 12px;
     gap: 24px;
 }
 
-.tip-perts .tip input[type='radio']{
+.tip-perts .tip input[type='radio'] {
     display: none;
 }
 
-.tip{
+.tip {
     background-color: var(--green-900);
     display: flex;
     align-items: center;
@@ -124,54 +146,69 @@ fieldset .tip-perts{
     color: var(--grey-50);
     border-radius: 8px;
     overflow: hidden;
+    min-width: 116px;
 }
 
-#custom-tip{
+/**
+ * Styling the Custom Field
+*/
+
+#custom-tip {
     background-color: transparent;
 }
 
-#custom-tip input{
+#custom-tip input {
     background-color: var(--grey-50);
     border: none;
     outline: none;
     border-radius: 8px;
     font-size: 24px;
-    padding: 0px 26px;
     font-weight: 700;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    font-family: space-mono;
+    padding: 0px 12px;
+    color: var(--green-900);
+    caret-color: var(--green-400);
 }
 
+#custom-tip input::placeholder{
+    text-align: center;
+}
 
-.tip-results{
+/**************************** For the output pane ***********************/
+.tip-results {
     background-color: var(--green-900);
     padding: 30px 20px 20px 20px;
     border-radius: 12px;
 }
 
-.output{
+.output {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 24px;
 }
 
-.output h4{
+.output h4 {
     color: var(--grey-50);
     font-size: 16px;
 }
 
-.output small{
+.output small {
     color: var(--grey-400);
     font-weight: 700;
 }
 
-.output strong{
+.output strong {
     color: var(--green-400);
     font-size: 30px;
 }
 
 .reset-button button{
     width: 100%;
-    height: 50px;
+    height: 48px;
     background-color: var(--green-400);
     border: none;
     margin-top: 12px;
@@ -181,12 +218,94 @@ fieldset .tip-perts{
     color: var(--green-900);
 }
 
+/************************ Attribution Stylings *************/
+
 .attribution {
     background-color: var(--white);
     font-size: 11px;
     text-align: center;
+    height: 20px;
 }
 
 .attribution a {
     color: hsl(228, 45%, 44%);
+}
+
+/*********** Desktop View ********************/
+@media (min-width:700px) {
+    .tip-calculator-container {
+        flex-direction: row;
+        border-radius: 10px;
+        max-width: 920px;
+        height: 480px;
+    }
+
+    .tip-results,
+    .input-fields-container {
+        flex: 1;
+    }
+
+    .input-fields-container {
+        padding: 0px 24px 24px 24px;
+    }
+
+    .input-fields-container form , .tip-results{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .tip-results{
+        padding: 30px;
+    }
+
+    .tip-results .output strong{
+        font-size: 44px;
+    }
+
+    fieldset .tip-perts {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .attribution {
+        background-color: transparent;
+    }
+}
+
+/****************** Managing the States Styles ***************/
+/**
+ * active Input Fields
+*/
+input:hover{
+    cursor: pointer;
+}
+
+.input-field.active .input , #custom-tip.active{
+    border: 2px solid var(--green-400);
+}
+
+.input-field.error .error-message{
+    display: block;
+    color: var(--error);
+}
+
+.input-field.error .input{
+    border: 2px solid var(--error);
+}
+
+.tip:hover , .tip.active{
+    background-color: var(--green-200);
+    color: var(--green-900);
+    cursor: pointer;
+}
+
+.reset-button button:hover{
+    background-color: var(--green-200);
+    cursor: pointer;
+}
+
+.reset-button.disable button{
+    background-color: var(--grey-500);
+    cursor: default;
 }
